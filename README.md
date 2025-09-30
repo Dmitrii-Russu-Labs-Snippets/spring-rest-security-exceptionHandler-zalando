@@ -7,49 +7,43 @@ Returns standardized [ProblemDetail (RFC 7807)](https://datatracker.ietf.org/doc
 
 
 ## Overview
-
-This repository demonstrates a minimal and compact way to customize Spring Security error handling using **lambdas directly in `SecurityConfig`**. Instead of creating separate component classes or beans, both `AuthenticationEntryPoint` and `AccessDeniedHandler` are implemented inline as lambda expressions.  
-
-This keeps the setup very concise — ideal for demos, prototypes, or smaller projects — while still returning consistent JSON error responses:  
-- **401 Unauthorized** → custom JSON body  
-- **403 Forbidden** → `ProblemDetail` (RFC 7807) format  
-
-Implementation difference vs other repos: handlers are defined inline as lambdas in the `SecurityFilterChain`,  not as [@Component classes](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-component)  or [@Bean methods](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-bean).
+This repository demonstrates how to handle Spring Security exceptions (authentication and authorization) in a centralized way using **Zalando Problem-Spring-Web**.  
+Instead of writing custom `AuthenticationEntryPoint`, `AccessDeniedHandler`, or global `@ExceptionHandler`, we rely on Zalando's library, which automatically maps exceptions into **Problem JSON** responses.
 
 ---
 
 ## Features
-- 401 Unauthorized → simple custom JSON (`status`, `error`, `message`, `timestamp`, `path`)
-- 403 Forbidden → RFC7807 `ProblemDetail` (`type`, `title`, `status`, `detail`, `instance`, `timestamp`)
-- Compact implementation using lambdas in `SecurityFilterChain` (no separate components)
-- Easy to adapt to production (inject `ObjectMapper`, integrate MDC/tracing for `traceId`)
+- **401 Unauthorized** → RFC 7807 Problem JSON with status `401`
+- **403 Forbidden** → RFC 7807 Problem JSON with status `403`
+- Standardized error format powered by Zalando
+- No need for custom `@RestControllerAdvice`
+- Consistent and extendable error responses across the application
 
 ---
 
 ## Example 401 response
+```http
+Content-Type: application/problem+json
 
-Content-Type: `application/json`
-```json
 {
+  "type": "about:blank",
+  "title": "Unauthorized",
   "status": 401,
-  "error": "Unauthorized",
-  "message": "Authentication failed",
-  "timestamp": "2025-09-27T10:00:00Z",
-  "path": "/auth/user"
+  "detail": "Full authentication is required to access this resource",
+  "instance": "/auth/user"
 }
 ```
 
 ## Example 403 response
+```http
+Content-Type: application/problem+json
 
-Content-Type: `application/problem+json`
-```json
 {
   "type": "about:blank",
   "title": "Forbidden",
   "status": 403,
   "detail": "Access Denied",
-  "instance": "/auth/admin",
-  "timestamp": "2025-09-27T10:01:00Z"
+  "instance": "/auth/admin"
 }
 ```
 
