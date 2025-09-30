@@ -1,9 +1,10 @@
-# Spring REST Security EntryPoint Handler (Lambda)
+# Spring REST Security Exception Handling (Zalando)
 
-Custom `AuthenticationEntryPoint` and `AccessDeniedHandler` implemented as **lambdas in `SecurityConfig`**.
-Returns custom JSON for `401 Unauthorized` and `ProblemDetail` (RFC7807) for `403 Forbidden`.
+Centralized handling of Spring Security authentication and authorization exceptions using [Zalando Problem-Spring-Web](https://github.com/zalando/problem-spring-web).  
+Returns standardized [ProblemDetail (RFC 7807)](https://datatracker.ietf.org/doc/html/rfc7807) JSON responses for all security errors (401 Unauthorized / 403 Forbidden).
 
 ---
+
 
 ## Overview
 
