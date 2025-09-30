@@ -77,5 +77,6 @@ curl -i -u jack:123 http://localhost:8080/auth/admin
 ## Related
 
 - [spring-rest-security-entrypointHandler-component](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-component) — handlers as separate components  
-- [spring-rest-security-entrypointHandler-bean](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-bean) — handlers as Spring beans
-
+- [spring-rest-security-entrypointHandler-bean](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-bean) — handlers as Spring beans  
+- [spring-rest-security-exceptionHandler-advice](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-exceptionHandler-advice) — centralized handler with `@RestControllerAdvice` + `@ExceptionHandler`  
+- [spring-rest-security-entrypointHandler-lambda](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-lambda) — handlers as inline lambdas in `SecurityConfig`  
