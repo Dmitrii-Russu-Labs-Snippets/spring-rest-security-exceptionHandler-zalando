@@ -1,7 +1,13 @@
 # Spring REST Security Exception Handling (Zalando)
 
-Centralized handling of Spring Security authentication and authorization exceptions using [Zalando Problem-Spring-Web](https://github.com/zalando/problem-spring-web).  
-Returns standardized [ProblemDetail (RFC 7807)](https://datatracker.ietf.org/doc/html/rfc7807) JSON responses for all security errors (401 Unauthorized / 403 Forbidden).
+Centralized handling of Spring Security authentication and authorization exceptions using [Zalando Problem-Spring-Web](https://github.com/zalando/problem-spring-web). Returns standardized [ProblemDetail (RFC 7807)](https://datatracker.ietf.org/doc/html/rfc7807) JSON responses for all security errors (401 Unauthorized / 403 Forbidden).
+
+Implementation difference vs other repos:  
+instead of writing custom `AuthenticationEntryPoint`, `AccessDeniedHandler`, or global `@ExceptionHandler`, we rely on **Zalando's problem-spring-web** library, which automatically maps exceptions into **Problem JSON** responses — unlike:  
+- [spring-rest-security-entrypointHandler-component](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-component) — handlers as separate components  
+- [spring-rest-security-entrypointHandler-bean](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-bean) — handlers as Spring beans  
+- [spring-rest-security-exceptionHandler-advice](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-exceptionHandler-advice) — centralized handler with `@RestControllerAdvice` + `@ExceptionHandler`  
+- [spring-rest-security-entrypointHandler-lambda](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-lambda) — handlers as inline lambdas in `SecurityConfig`
 
 ---
 
