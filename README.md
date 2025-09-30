@@ -2,6 +2,11 @@
 
 Centralized handling of Spring Security authentication and authorization exceptions using [Zalando Problem-Spring-Web](https://github.com/zalando/problem-spring-web). Returns standardized [ProblemDetail (RFC 7807)](https://datatracker.ietf.org/doc/html/rfc7807) JSON responses for all security errors (401 Unauthorized / 403 Forbidden).
 
+---
+
+## Overview
+This repository demonstrates how to handle Spring Security exceptions (authentication and authorization) in a centralized way using **Zalando Problem-Spring-Web**.  
+
 Implementation difference vs other repos:  
 instead of writing custom `AuthenticationEntryPoint`, `AccessDeniedHandler`, or global `@ExceptionHandler`, we rely on **Zalando's problem-spring-web** library, which automatically maps exceptions into **Problem JSON** responses — unlike:  
 - [spring-rest-security-entrypointHandler-component](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-component) — handlers as separate components  
@@ -9,12 +14,6 @@ instead of writing custom `AuthenticationEntryPoint`, `AccessDeniedHandler`, or 
 - [spring-rest-security-exceptionHandler-advice](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-exceptionHandler-advice) — centralized handler with `@RestControllerAdvice` + `@ExceptionHandler`  
 - [spring-rest-security-entrypointHandler-lambda](https://github.com/Dmitrii-Russu-Labs-Snippets/spring-rest-security-entrypointHandler-lambda) — handlers as inline lambdas in `SecurityConfig`
 
----
-
-
-## Overview
-This repository demonstrates how to handle Spring Security exceptions (authentication and authorization) in a centralized way using **Zalando Problem-Spring-Web**.  
-Instead of writing custom `AuthenticationEntryPoint`, `AccessDeniedHandler`, or global `@ExceptionHandler`, we rely on Zalando's library, which automatically maps exceptions into **Problem JSON** responses.
 
 ---
 
